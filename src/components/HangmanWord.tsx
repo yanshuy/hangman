@@ -2,12 +2,14 @@ type HangmanWordProps = {
   wordToGuess: string;
   guessedLetters: string[];
   isLoser?: boolean;
+  isWinner?: boolean;
 };
 
 const HangmanWord = ({
   wordToGuess,
   guessedLetters,
   isLoser,
+  isWinner,
 }: HangmanWordProps) => {
   return (
     <div className="hangman-word">
@@ -29,7 +31,11 @@ const HangmanWord = ({
                   ? "visible"
                   : "hidden",
               color:
-                !guessedLetters.includes(letter) && isLoser ? "red" : "black",
+                !guessedLetters.includes(letter) && isLoser
+                  ? "red"
+                  : isWinner
+                  ? "green"
+                  : "black",
             }}
           >
             {letter}

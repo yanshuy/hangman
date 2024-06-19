@@ -76,6 +76,7 @@ function App() {
         wordToGuess={word}
         guessedLetters={guessedLetters}
         isLoser={isLoser}
+        isWinner={isWinner}
       />
       <Keyboard
         correctGuesses={correctGuesses}
