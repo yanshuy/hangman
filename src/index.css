@@ -1,0 +1,207 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: auto;
+}
+
+.assert {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.canvas {
+  --stick-width: 7px;
+  width: min(100%, 800px);
+  height: clamp(300px, 50vh, 300px);
+  margin: 0 auto;
+  position: relative;
+}
+
+.drawing {
+  position: absolute;
+  inset: 50%;
+  /* margin: auto; */
+  left: 43%;
+
+  .stick {
+    width: var(--stick-width);
+    background-color: black;
+    position: absolute;
+    inset: -125px 0;
+  }
+  .bottom-stand {
+    width: 170px;
+    height: var(--stick-width);
+    background-color: black;
+    position: absolute;
+    top: 125px;
+    translate: calc(-170px / 2 + var(--stick-width) / 2);
+  }
+  .upper-stand {
+    width: 150px;
+    height: var(--stick-width);
+    background-color: black;
+    position: absolute;
+    top: -125px;
+
+    .rope {
+      width: var(--stick-width);
+      height: 50px;
+      background-color: black;
+      position: absolute;
+      top: 0;
+      left: 150px;
+    }
+  }
+
+  .man {
+    position: absolute;
+    background-color: red;
+    left: 150px;
+    top: -75px;
+
+    .head {
+      width: 70px;
+      aspect-ratio: 1;
+      background-color: black;
+      border-radius: 50%;
+      position: absolute;
+      left: -31.5px;
+
+      &::before {
+        content: "";
+        border-radius: 50%;
+        inset: var(--stick-width);
+        background-color: white;
+        position: absolute;
+        z-index: 1;
+      }
+    }
+
+    .body {
+      width: var(--stick-width);
+      height: 60px;
+      background-color: black;
+      position: absolute;
+      top: 70px;
+    }
+
+    .left-hand {
+      width: 50px;
+      height: var(--stick-width);
+      background-color: black;
+      position: absolute;
+      top: 70px;
+      left: -44px;
+      transform: rotate(30deg);
+    }
+
+    .right-hand {
+      width: 50px;
+      height: var(--stick-width);
+      background-color: black;
+      position: absolute;
+      top: 70px;
+      left: 1px;
+      transform: rotate(-30deg);
+    }
+
+    .left-leg {
+      width: 50px;
+      height: var(--stick-width);
+      background-color: black;
+      position: absolute;
+      top: 123px;
+      left: -43px;
+      transform-origin: bottom right;
+      transform: rotate(-45deg);
+    }
+
+    .right-leg {
+      width: 50px;
+      height: var(--stick-width);
+      background-color: black;
+      position: absolute;
+      top: 123px;
+      left: 0px;
+      transform-origin: bottom left;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.hangman-word {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1.1;
+  text-transform: uppercase;
+  font-family: monospace;
+}
+
+.keyboard {
+  max-width: 650px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 0.5rem;
+  margin-top: 30px;
+  padding: 10px;
+
+  .keys {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+    background: none;
+    border-radius: 5px;
+    aspect-ratio: 1;
+    font-size: 1.75rem;
+    font-weight: bolder;
+    color: black;
+    border: 3px solid black;
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: black;
+      color: white;
+    }
+    &:focus:not(:disabled) {
+      background-color: black;
+      color: white;
+    }
+
+    &:disabled {
+      opacity: 0.1;
+      cursor: default;
+      /* color: red;
+      border: 3px solid red; */
+    }
+
+    &.active {
+      background-color: black;
+      color: white;
+    }
+  }
+}
